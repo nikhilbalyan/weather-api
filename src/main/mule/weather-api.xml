@@ -10,7 +10,7 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 	</http:listener-config>
 	<flow name="weather-apiFlow" doc:id="ae8d3027-f3d5-4831-9ff5-8716e9d8e71c" >
 		<http:listener doc:name="Listener" doc:id="914b40ed-d718-4ac7-beff-711cfc9189a8" config-ref="HTTP_Listener_config" path="/delhi-weather"/>
-		<http:request method="GET" doc:name="Request" doc:id="da762e0e-5c1b-4abb-92a3-33d17af51652" url="https://api.openweathermap.org/data/2.5/weather?q=Delhi&amp;appid=fdfd2cd1083b8f8c795c37f373c1c3e1"/>
+		<http:request method="GET" doc:name="Request" doc:id="da762e0e-5c1b-4abb-92a3-33d17af51652" url="#[&quot;https://api.openweathermap.org/data/2.5/weather?q=Delhi&amp;appid=&quot; ++(attributes.queryParams.'api-id' default &quot;&quot;)]"/>
 		<ee:transform doc:name="Transform Message" doc:id="de86e992-224e-4a11-ad17-05ae02a1e886" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
